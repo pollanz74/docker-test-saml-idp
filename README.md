@@ -12,7 +12,7 @@ Built with [SimpleSAMLphp](https://simplesamlphp.org). Based on official PHP7 Ap
 
 SimpleSAMLphp is logging to stdout on debug log level. Apache is logging error and access log to stdout.
 
-The contained version of SimpleSAMLphp is 1.15.2.
+The contained version of SimpleSAMLphp is 1.19.1.
 
 
 ## Supported Tags
@@ -29,21 +29,20 @@ See [CHANGELOG.md](https://github.com/kristophjunge/docker-test-saml-idp/blob/ma
 ## Usage
 
 ```
-docker run --name=testsamlidp_idp \
--p 8080:8080 \
--p 8443:8443 \
--e SIMPLESAMLPHP_SP_ENTITY_ID=http://app.example.com \
--e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/test-sp \
--e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp \
--d kristophjunge/test-saml-idp
+docker build -t pollanz74/simplesamlphp:1.19.1 .
+```
+
+```
+docker run --rm --name=simplesamlphp_idp -p 9080:8080 -p 9443:8443 pollanz74/simplesamlphp:1.19.1
 ```
 
 There are two static users configured in the IdP with the following data:
 
 | UID | Username | Password | Group | Email |
 |---|---|---|---|---|
-| 1 | user1 | user1pass | group1 | user1@example.com |
-| 2 | user2 | user2pass | group2 | user2@example.com |
+| 1 | user1 | user1pass | group1 | user1@example.com  |
+| 2 | user2 | user2pass | group2 | user2@example.com  |
+| 3 | enea  | password  |        | ena256@example.com |
 
 However you can define your own users by mounting a configuration file:
 
